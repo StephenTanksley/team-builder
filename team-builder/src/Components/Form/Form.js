@@ -2,6 +2,11 @@ import React, { useState } from 'react';
 import styled from 'styled-components'
 
 const Wrapper = styled.div`
+  display: flex;
+  margin: 0 auto;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
   margin: 1.5rem;
 `
 
@@ -9,15 +14,11 @@ const Wrapper = styled.div`
 const Form = props => { //We're creating a new function here.
     const initialState = { name: "", role: "", email: "" }; //we're setting the initial value of our state here.
     const [newTeammate, setNewTeammate] = useState(initialState); //We're setting our state to use the initial value.
-  
-   
-    const resetForm = () => {
-      setNewTeammate(initialState);
-    };
 
     const handleChange = event => { 
-      setNewTeammate({...newTeammate, [event.target.name]: event.target.value
-
+      setNewTeammate({
+      ...newTeammate, 
+      [event.target.name]: event.target.value
     });
   };
 
@@ -27,36 +28,60 @@ const Form = props => { //We're creating a new function here.
     if (!newTeammate.name || !newTeammate.role || !newTeammate.email) {
       alert("Please fill out all fields!");
     } else {
-      props.setNewTeammate([newTeammate, ...props.team]); // This will be coming once we get to App.
+      props.setTeam([newTeammate, ...props.team]); // This will be coming once we get to App.
       resetForm();
-    }
-  };
+      }
+    };
   
+  const resetForm = () => {
+    setNewTeammate(initialState);
+  };
+
     return (
       <form onSubmit={handleSubmit}>
         <div className = "item-container">
           <Wrapper>
-          <label>
-            Name: 
-            <input type="text" />
-          </label>
+            <label>
+              Name: 
+              <input 
+                type="text"
+                name="name"
+                onChange={handleChange}
+                value={newTeammate.name}
+                />
+            </label>
           </Wrapper>
           
           <Wrapper>
-          <label>
-            Role: 
-            <input type="text" />{/*This could be either text or something else. TBD */}
-          </label>
+            <label>
+              Role: 
+              <input 
+                type="text"
+                name="role"
+                onChange={handleChange}
+                value={newTeammate.role} 
+                />
+            </label>
           </Wrapper>
 
           <Wrapper>
-          <label>
-            Email: 
-            <input type="email" required /> {/*Makes this field require an email address.*/}
-          </label>
+            <label>
+              Email: 
+              <input 
+                type="email" required
+                name="email" 
+                onChange={handleChange}
+                value={newTeammate.email}  
+                />
+            </label>
           </Wrapper>
 
-          <button>Submit</button>
+          <Wrapper>
+            <button type = "submit">Submit</button>
+          </Wrapper>
+          <Wrapper>
+            <button type="button" onClick={resetForm}>Reset</button>
+          </Wrapper>
         </div>
       </form>
     );

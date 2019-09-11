@@ -12,7 +12,8 @@ function App() {
       name: "",
       role: "",
       email: ""
-  }]) 
+  }
+]); 
   //We're setting this to an empty object because each team member needs to be a unique object.
 
 
