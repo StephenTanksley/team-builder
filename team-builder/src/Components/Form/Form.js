@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components'
 
+
+
 const Wrapper = styled.div`
-  display: flex;
-  margin: 0 auto;
   justify-content: center;
   text-align: center;
   align-items: center;
@@ -12,8 +12,10 @@ const Wrapper = styled.div`
 
 
 const Form = props => { //We're creating a new function here.
+    console.log(props)
     const initialState = { name: "", role: "", email: "" }; //we're setting the initial value of our state here.
     const [newTeammate, setNewTeammate] = useState(initialState); //We're setting our state to use the initial value.
+
 
     const handleChange = event => { 
       setNewTeammate({
@@ -61,6 +63,16 @@ const Form = props => { //We're creating a new function here.
                 onChange={handleChange}
                 value={newTeammate.role} 
                 />
+
+                {/*This doesn't look quite right yet. When you add this function, it technically works but the form drop-down box is all squished. */}
+              {/* <select size="4" name="role" onChange={handleChange} value={newTeammate.role}>
+                  <option value="DevOps"></option>
+                  <option value="Front-End Developer"></option>
+                  <option value="Back-End Developer"></option>
+                  <option value="Member Experience"></option>
+                </select> */}
+
+
             </label>
           </Wrapper>
 
@@ -103,3 +115,9 @@ const Form = props => { //We're creating a new function here.
 //STRETCH
 
   // 3)  We should be able to edit the cards. We'll need to figure out how to select individual items from state.App
+
+  // 4)  We should be able to delete a card once we have it in state.
+
+
+
+  //Create a new route for the edit portion. When you create the link on the component itself
